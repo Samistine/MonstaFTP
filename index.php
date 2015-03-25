@@ -6,7 +6,7 @@ $version = "1.5.1";
 # Open README file for descriptions and help.
 
 $ftpHost = "";
-$ftpPort = "21"; // 21 is default
+$ftpPort = "30"; // 21 is default
 $ftpMode = "1"; // 1 passive, 0 not passive
 $ftpSSL  = "0"; // 1 for SSL, 0 for not SSL
 $ftpDir  = "";
@@ -197,7 +197,7 @@ function startSession()
     }
 }
 
-function saveFtpDetailsCookie()
+/**function saveFtpDetailsCookie()
 {
     
     if ($_POST["login"] == 1) {
@@ -232,7 +232,7 @@ function saveFtpDetailsCookie()
             setcookie("ip_check", "", time() - 3600);
         }
     }
-}
+}**/
 
 function attemptLogin()
 {
@@ -313,8 +313,9 @@ function attemptLogin()
                         if (@ftp_chdir($conn_id, $ftpDir)) {
                             $_SESSION["dir_current"] = $ftpDir;
                         } else {
-                            if (@ftp_chdir($conn_id, "~" . $ftpDir))
+                            if (@ftp_chdir($conn_id, "~" . $ftpDir)) {
                                 $_SESSION["dir_current"] = "~" . $ftpDir;
+                            }
                         }
                     }
                     
@@ -335,14 +336,18 @@ function displayHeader()
     global $version;
     
     // The order of these determines the proper display
-    if ($_COOKIE["skin"] != "")
+    if ($_COOKIE["skin"] != "") {
         $skin = $_COOKIE["skin"];
-    if ($_SESSION["skin"] != "")
+    }
+    if ($_SESSION["skin"] != "") {
         $skin = $_SESSION["skin"];
-    if (isset($_POST["skin"]))
+    }
+    if (isset($_POST["skin"])) {
         $skin = $_POST["skin"];
-    if ($skin == "")
+    }
+    if ($skin == "") {
         $skin = "monsta";
+    }
     
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -632,19 +637,19 @@ function checkLoginErrors()
     global $ftpHost;
     
     // Check for blank fields
-    if ($ftpHost == "") {
+/**    if ($ftpHost == "") {
         if ($_POST["ftp_host"] == "" || trim($_POST["ftp_user"]) == "" || trim($_POST["ftp_pass"]) == "" || trim($_POST["ftp_port"]) == "")
             return 1;
         else
             return 0;
-    }
+    }**/
     
-    if ($ftpHost != "") {
+//    if ($ftpHost != "") {
         if (trim($_POST["ftp_user"]) == "" || trim($_POST["ftp_pass"]) == "")
             return 1;
         else
             return 0;
-    }
+//    }
 }
 
 function connectFTP($posted)
