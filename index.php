@@ -861,12 +861,9 @@ function getPlatform()
             $platformTestCount++;
             
             // Create a test folder
-            if (@ftp_mkdir($conn_id, "test")) {
-                
-                if ($platformTestCount < 2) {
+            if (@ftp_mkdir($conn_id, "test") && $platformTestCount < 2) {
                     getPlatform();
                     @ftp_rmdir($conn_id, "test");
-                }
             }
             
         } else {
@@ -928,10 +925,12 @@ function createFileFolderArrayLin($ftp_rawlist, $type)
             $date = formatFtpDate($day, $month, $year);
             
             // Reset user and group
-            if ($user == "0")
+            if ($user == "0") {
                 $user = "-";
-            if ($group == "0")
+            }
+            if ($group == "0") {
                 $group = "-";
+            }
             
             // Add folder to array
             if (getFileType($perms) == "d") {
@@ -989,18 +988,19 @@ function createFileFolderArrayLin($ftp_rawlist, $type)
             if (is_array($foldAllAr)) {
                 
                 // Set the folder arrays to sort
-                if ($sort == "n")
+                if ($sort == "n") {
                     $sortAr = $foldNameAr;
-                if ($sort == "d")
+                }elseif ($sort == "d") {
                     $sortAr = $foldDateAr;
-                if ($sort == "t")
+                }elseif ($sort == "t") {
                     $sortAr = $foldTimeAr;
-                if ($sort == "u")
+                }elseif ($sort == "u") {
                     $sortAr = $foldUserAr;
-                if ($sort == "g")
+                }elseif ($sort == "g") {
                     $sortAr = $foldGroupAr;
-                if ($sort == "p")
+                }elseif ($sort == "p") {
                     $sortAr = $foldPermsAr;
+                }
                 
                 // Multisort array
                 if (is_array($sortAr)) {
@@ -1153,9 +1153,9 @@ function createFileFolderArrayWin($ftp_rawlist, $type)
                 // Set the folder arrays to sort
                 if ($sort == "n")
                     $sortAr = $foldNameAr;
-                if ($sort == "d")
+                elseif ($sort == "d")
                     $sortAr = $foldDateAr;
-                if ($sort == "t")
+                elseif ($sort == "t")
                     $sortAr = $foldTimeAr;
                 
                 // Multisort array
@@ -1181,11 +1181,11 @@ function createFileFolderArrayWin($ftp_rawlist, $type)
                 // Set the folder arrays to sort
                 if ($sort == "n")
                     $sortAr = $fileNameAr;
-                if ($sort == "s")
+                elseif ($sort == "s")
                     $sortAr = $fileSizeAr;
-                if ($sort == "d")
+                elseif ($sort == "d")
                     $sortAr = $fileDateAr;
-                if ($sort == "t")
+                elseif ($sort == "t")
                     $sortAr = $fileTimeAr;
                 
                 // Multisort folders
