@@ -1237,8 +1237,9 @@ function getFileListHtml($array, $image)
             
         } else {
             
-            if ($_SESSION["dir_current"] == "/")
+            if ($_SESSION["dir_current"] == "/") {
                 $file_path = "/" . $file;
+            }
             else
                 $file_path = $_SESSION["dir_current"] . "/" . $file;
         }
@@ -1253,10 +1254,12 @@ function getFileListHtml($array, $image)
         
         // Check for checkbox check (only if action button clicked)
         if ($_POST["ftpAction"] != "") {
-            if ((sizeof($_SESSION["clipboard_rename"]) > 1 && in_array($file, $_SESSION["clipboard_rename"])) || (sizeof($_SESSION["clipboard_chmod"]) > 1 && in_array($file_path, $_SESSION["clipboard_chmod"])))
+            if ((sizeof($_SESSION["clipboard_rename"]) > 1 && in_array($file, $_SESSION["clipboard_rename"])) || (sizeof($_SESSION["clipboard_chmod"]) > 1 && in_array($file_path, $_SESSION["clipboard_chmod"]))) {
                 $checked = "checked";
-            else
+            }
+            else {
                 $checked = "";
+            }
             
         } else {
             $checked = "";
