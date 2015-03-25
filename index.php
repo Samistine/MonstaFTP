@@ -806,10 +806,12 @@ function displayFiles()
         echo "<td width=\"16\"></td>";
         echo "<td width=\"16\"><img src=\"images/icon_16_folder.gif\" width=\"16\" height=\"16\"></td>";
         
-        if ($_SESSION["interface"] == "adv")
+        if ($_SESSION["interface"] == "adv") {
             echo "<td colspan=\"7\">";
-        else
+        }
+        else {
             echo "<td colspan=\"4\">";
+        }
         
         // Get the parent directory
         $parent = getParentDir();
