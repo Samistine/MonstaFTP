@@ -748,9 +748,9 @@ function getFtpRawList($folder_path)
     
     $isError = 0;
     
-    if (!@ftp_chdir($conn_id, $folder_path)) {
+    if (!ftp_chdir($conn_id, $folder_path)) {
         if (checkFirstCharTilde($folder_path) == 1) {
-            if (!@ftp_chdir($conn_id, replaceTilde($folder_path))) {
+            if (!ftp_chdir($conn_id, replaceTilde($folder_path))) {
                 recordFileError("folder", replaceTilde($folder_path), $lang_folder_cant_access);
                 $isError = 1;
             }
