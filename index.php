@@ -3362,14 +3362,14 @@ function createFolderHeirarchy($path)
     $n = sizeof($folderAr);
     for ($i = 0; $i < $n; $i++) {
         
-        if ($folder == "")
+        if ($folder == "") {
             $folder = $folderAr[$i];
-        else
+        } else {
             $folder = $folder . "/" . $folderAr[$i];
+        }
         
-        if (!ftp_mkdir($conn_id, $folder)) {
-            if (checkFirstCharTilde($folder) == 1)
-                ftp_mkdir($conn_id, replaceTilde($folder));
+        if (!ftp_mkdir($conn_id, $folder) && (checkFirstCharTilde($folder) == 1) ) {
+            ftp_mkdir($conn_id, replaceTilde($folder));
         }
     }
 }
@@ -3430,13 +3430,15 @@ function singleQuoteEscape($str)
 
 function getFileType($perms)
 {
-    
-    if (substr($perms, 0, 1) == "d")
+    $subPerms = substr($perms, 0, 1);
+    if ($subPerms == "d") {
         return "d"; // directory
-    if (substr($perms, 0, 1) == "l")
+    }elseif ($subPerms == "l") {
         return "l"; // link
-    if (substr($perms, 0, 1) == "-")
+    }elseif ($subPerms == "-") {
         return "f"; // file
+    }
+        
 }
 
 function displayAjaxDivOpen()
@@ -3489,11 +3491,13 @@ function displayPopupOpen($resize, $width, $height, $isError, $title)
     // Set default sizes of exceeded
     if ($resize == 1) {
         
-        if ($width < 400)
+        if ($width < 400) {
             $width = 400;
+        }
         
-        if ($height > 400)
+        if ($height > 400) {
             $height = 400;
+        }
     }
     
     $windowWidth  = $_POST["windowWidth"];
