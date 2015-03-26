@@ -663,10 +663,12 @@ function connectFTP($posted)
     if ($_SESSION["ftp_host"] != "" && $_SESSION["ftp_port"] != "" && $_SESSION["ftp_user"] != "" && $_SESSION["ftp_pass"] != "") {
         
         // Connect
-        if ($_SESSION["ftp_ssl"] == 1)
+        if ($_SESSION["ftp_ssl"] == 1) {
             $conn_id = @ftp_ssl_connect($_SESSION["ftp_host"], $_SESSION["ftp_port"]) or $connectFail = 1;
-        else
+        }
+        else {
             $conn_id = @ftp_connect($_SESSION["ftp_host"], $_SESSION["ftp_port"]) or $connectFail = 1;
+        }
         
         if ($connectFail == 1) {
             $_SESSION["login_error"] = $lang_cant_connect;
