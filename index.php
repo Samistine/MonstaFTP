@@ -637,19 +637,19 @@ function checkLoginErrors()
     global $ftpHost;
     
     // Check for blank fields
-/**    if ($ftpHost == "") {
+    if ($ftpHost == "") {
         if ($_POST["ftp_host"] == "" || trim($_POST["ftp_user"]) == "" || trim($_POST["ftp_pass"]) == "" || trim($_POST["ftp_port"]) == "")
             return 1;
         else
             return 0;
-    }**/
+    }
     
-//    if ($ftpHost != "") {
+    if ($ftpHost != "") {
         if (trim($_POST["ftp_user"]) == "" || trim($_POST["ftp_pass"]) == "")
             return 1;
         else
             return 0;
-//    }
+    }
 }
 
 function connectFTP($posted)
