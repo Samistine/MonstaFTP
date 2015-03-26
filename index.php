@@ -1353,30 +1353,44 @@ function formatFtpDate($day, $month, $year)
     if (strlen($day) == 1)
         $day = "0" . $day;
     
-    if ($month == "Jan")
-        $month = "01";
-    if ($month == "Feb")
-        $month = "02";
-    if ($month == "Mar")
-        $month = "03";
-    if ($month == "Apr")
-        $month = "04";
-    if ($month == "May")
-        $month = "05";
-    if ($month == "Jun")
-        $month = "06";
-    if ($month == "Jul")
-        $month = "07";
-    if ($month == "Aug")
-        $month = "08";
-    if ($month == "Sep")
-        $month = "09";
-    if ($month == "Oct")
-        $month = "10";
-    if ($month == "Nov")
-        $month = "11";
-    if ($month == "Dec")
-        $month = "12";
+    switch($month) {
+        case "Jan":
+            $month = "01";
+            break;
+        case "Feb":
+            $month = "02";
+            break;
+        case "Mar":
+            $month = "03";
+            break;
+        case "Apr":
+            $month = "04";
+            break;
+        case "May":
+            $month = "05";
+            break;
+        case "Jun":
+            $month = "06";
+            break;
+        case "Jul":
+            $month = "07";
+            break;
+        case "Aug":
+            $month = "08";
+            break;
+        case "Sep":
+            $month = "09";
+            break;
+        case "Oct":
+            $month = "10";
+            break;
+        case "Nov":
+            $month = "11";
+            break;
+        case "Dec":
+            $month = "12";
+            break;
+    }
     
     // Set the year if none
     if ($year == "") {
