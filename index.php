@@ -1894,10 +1894,11 @@ function moveFiles()
     global $lang_file_cant_move;
     
     // Check for a right-clicked folder (else it's current)
-    if (isset($_POST["rightClickFolder"]))
+    if (isset($_POST["rightClickFolder"])) {
         $folderMoveTo = quotesUnescape($_POST["rightClickFolder"]);
-    else
+    } else {
         $folderMoveTo = $_SESSION["dir_current"];
+    }
     
     // Check if destination folder is a sub-folder
     if (sizeof($_SESSION["clipboard_folders"]) > 0) {
@@ -1940,8 +1941,9 @@ function moveFiles()
                     }
                 }
                 
-                if ($isError == 0)
+                if ($isError == 0) {
                     deleteFtpHistory($folder_to_move);
+                }
             }
         }
         
@@ -2039,10 +2041,11 @@ function copyFiles()
     global $lang_server_error_up;
     
     // Check for a right-clicked folder (else it's current)
-    if (isset($_POST["rightClickFolder"]))
+    if (isset($_POST["rightClickFolder"])) {
         $folderMoveTo = quotesUnescape($_POST["rightClickFolder"]);
-    else
+    } else {
         $folderMoveTo = $_SESSION["dir_current"];
+    }
     
     // Folders
     foreach ($_SESSION["clipboard_folders"] as $folder) {
