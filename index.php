@@ -1478,8 +1478,9 @@ function openFolder()
             $_SESSION["dir_current"] = $dir;
             
             // Record new directory to history
-            if (!is_array($_SESSION["dir_history"])) // array check
+            if (!is_array($_SESSION["dir_history"])) { // array check
                 $_SESSION["dir_history"] = array();
+            }
             if (!in_array($dir, $_SESSION["dir_history"])) {
                 $_SESSION["dir_history"][] = $dir;
                 asort($_SESSION["dir_history"]); // sort array
@@ -1493,8 +1494,9 @@ function openFolder()
             deleteFtpHistory($dir);
             
             // Change to previous directory (if folder to open is currently open)
-            if ($_POST["openFolder"] == $_SESSION["dir_current"] || $_POST["openFolder"] == "")
+            if ($_POST["openFolder"] == $_SESSION["dir_current"] || $_POST["openFolder"] == "") {
                 $_SESSION["dir_current"] = getParentDir();
+            }
             
             return 0;
         }
